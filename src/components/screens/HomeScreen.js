@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native'
-import AppNavigator from './src/navigation/AppNavigator'
+import { View, StyleSheet, Text } from 'react-native'
 
-const App = () => {
+const HomeScreen = () => {
     return (
         <View style={styles.container}>
-            <AppNavigator />
+            <Text>Home Screen</Text>
         </View>
     )
 }
@@ -16,4 +15,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default App
+export default HomeScreen
