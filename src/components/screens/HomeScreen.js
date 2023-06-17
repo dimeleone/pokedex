@@ -1,10 +1,24 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, StyleSheet } from 'react-native'
+import PokeList from '../common/PokeList'
+import pokemonService from '../../services/pokemonService'
 
 const HomeScreen = () => {
+    const [pokemons, setPokemons] = useState([])
+
+    useEffect(() => {
+        pokemonService.getAll()
+            .then((data) => {
+                setPokemons(data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
+
     return (
         <View style={styles.container}>
-            <Text>Home Screen</Text>
+            <PokeList pokemons={pokemons} />
         </View>
     )
 }
