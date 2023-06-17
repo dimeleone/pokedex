@@ -24,6 +24,13 @@ const getById = async (pokemonId) => {
     return data
 }
 
+const getPokemonFireredDescription = async (pokemonId) => {
+    const response = await fetch(`${BASE_URL}/pokemon-species/${pokemonId}`)
+    const data = await response.json()
+    const description = data.flavor_text_entries.find((description) => description.version.name === 'firered')
+    return description.flavor_text
+  }
+
 const getImage = (pokemonId) => {
     return !pokemonId.toString().includes('default') ? `${BASE_IMAGE_URL}/${pokemonId}.png` : EMPTY_POKEMON_IMAGE_URL
 }
@@ -31,5 +38,6 @@ const getImage = (pokemonId) => {
 export default {
     getAll,
     getImage,
-    getById
+    getById,
+    getPokemonFireredDescription
 }
