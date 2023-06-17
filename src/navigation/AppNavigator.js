@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import HomeScreen from '../components/screens/HomeScreen'
+import DetailScreen from '../components/screens/DetailScreen'
 import colorConstants from '../constants/colorConstants'
 
 const Stack = createStackNavigator()
@@ -20,7 +21,18 @@ const AppNavigator = () => {
                         headerTitleStyle: {
                             color: colorConstants.mediumGrey
                         },
-                        headerRight: () => <MaterialCommunityIcons name="pokeball" style={styles.homeIcon} />
+                        headerRight: () => <MaterialCommunityIcons name="pokeball" style={styles.homeIcon}
+                        />
+                    }}
+                />
+                <Stack.Screen
+                    name="Detail"
+                    component={DetailScreen}
+                    options={{
+                        title: 'Detalhes',
+                        headerTitleStyle: {
+                            color: colorConstants.mediumGrey
+                        }
                     }}
                 />
             </Stack.Navigator>

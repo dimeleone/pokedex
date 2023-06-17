@@ -1,13 +1,13 @@
 import React from 'react'
-import { View, StyleSheet, FlatList } from 'react-native'
+import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import PokeCard from './PokeCard'
 
-const PokeList = ({ pokemons }) => {
+const PokeList = ({ pokemons, onPress }) => {
     return (
         <View style={styles.container}>
             <FlatList
                 data={pokemons}
-                renderItem={({ item }) => <PokeCard pokemon={item} />}
+                renderItem={({ item }) => <PokeCard pokemon={item} onPress={() => onPress(item)} />}
                 keyExtractor={item => item.id}
                 numColumns={2}
             />

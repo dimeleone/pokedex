@@ -1,7 +1,6 @@
-import EMPTY_POKEMON from '../assets/poke-empty.png'
-
 const BASE_URL = 'https://pokeapi.co/api/v2'
 const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork'
+const EMPTY_POKEMON_IMAGE_URL = 'https://github.com/dimeleone/pokedex/blob/master/src/assets/poke-empty.png?raw=true'
 
 async function expandPokemons(pokemons) {
     const promises = pokemons.map(async (pokemon) => {
@@ -12,25 +11,33 @@ async function expandPokemons(pokemons) {
     return results
 }
 
-function setPokemonImage(pokemons) {
-    pokemons.forEach((pokemon) => {
-        pokemon.image = `${BASE_IMAGE_URL}/${pokemon.id}.png`
-    })
-}
-
 const getAll = async () => {
     const response = await fetch(`${BASE_URL}/pokemon?limit=151`)
     const data = await response.json()
     const pokemons = await expandPokemons(data.results)
-    setPokemonImage(pokemons)
     return pokemons
 }
 
+const getById = async (pokemonId) => {
+    const response = await fetch(`${BASE_URL}/pokemon/${pokemonId}`)
+    const data = await response.json()
+    return data
+}
+
+const getPokemonFireredDescription = async (pokemonId) => {
+    const response = await fetch(`${BASE_URL}/pokemon-species/${pokemonId}`)
+    const data = await response.json()
+    const description = data.flavor_text_entries.find((description) => description.version.name === 'firered')
+    return description.flavor_text
+  }
+
 const getImage = (pokemonId) => {
-    return !pokemonId.toString().includes('default') ? `${BASE_IMAGE_URL}/${id}.png` : EMPTY_POKEMON
+    return !pokemonId.toString().includes('default') ? `${BASE_IMAGE_URL}/${pokemonId}.png` : EMPTY_POKEMON_IMAGE_URL
 }
 
 export default {
     getAll,
-    getImage
+    getImage,
+    getById,
+    getPokemonFireredDescription
 }

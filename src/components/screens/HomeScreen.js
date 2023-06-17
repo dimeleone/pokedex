@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import PokeList from '../common/PokeList'
 import pokemonService from '../../services/pokemonService'
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const [pokemons, setPokemons] = useState([])
 
     useEffect(() => {
@@ -16,9 +16,13 @@ const HomeScreen = () => {
             })
     }, [])
 
+    function handlePress(pokemon) {
+        navigation.navigate('Detail', { pokemon })
+    }
+
     return (
         <View style={styles.container}>
-            <PokeList pokemons={pokemons} />
+            <PokeList pokemons={pokemons} onPress={handlePress} />
         </View>
     )
 }
