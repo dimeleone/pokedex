@@ -21,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.container}>
+        <View testID='home-screen' style={styles.container}>
             <PokeList pokemons={pokemons} onPress={handlePress} />
         </View>
     )

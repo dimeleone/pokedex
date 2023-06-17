@@ -44,7 +44,7 @@ const DetailScreen = ({ route, navigation }) => {
     }, [pokemon])
 
     return (
-        <View style={{ ...styles.container, backgroundColor: colorConstants.pokemonTypes[pokemon.types[0].type.name] }}>
+        <View testID='detail-screen' style={{ ...styles.container, backgroundColor: colorConstants.pokemonTypes[pokemon.types[0].type.name] }}>
             <PokeDetail pokemon={{ ...pokemon, description: pokemonDescription }} />
         </View>
     )

@@ -5,16 +5,21 @@ import pokemonService from '../../services/pokemonService'
 import colorConstants from '../../constants/colorConstants'
 
 const PokeCard = ({ pokemon, onPress }) => {
-    const pokemonColor = colorConstants.pokemonTypes[pokemon.types[0].type.name]
+    if (!pokemon) {
+        return <View />
+    }
+
+    const pokemonColor = colorConstants.pokemonTypes[pokemon.types[0].type.name] || colorConstants.pokemonTypes['default']
 
     return (
         <TouchableOpacity
+            testID='poke-card'
             style={{ ...styles.container, borderColor: pokemonColor }}
             onPress={onPress}
             activeOpacity={0.8}
         >
-            <Image style={styles.image} source={{ uri: pokemonService.getImage(pokemon.id) }} />
-            <Text style={{ ...styles.name, backgroundColor: pokemonColor }}>
+            <Image testID='poke-image' style={styles.image} source={{ uri: pokemonService.getImage(pokemon.id) }} />
+            <Text testID='poke-name' style={{ ...styles.name, backgroundColor: pokemonColor }}>
                 {helper.makeFirstLetterUpperCase(pokemon.name)}
             </Text>
         </TouchableOpacity>

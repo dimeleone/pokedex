@@ -22,6 +22,7 @@ export default {
         bug: "#A7B723",
         fire: "#F57D31",
         electric: "#F9CF30",
-        dragon: "#7037FF"
+        dragon: "#7037FF",
+        default: "#AAAAAA"
     }
 }
