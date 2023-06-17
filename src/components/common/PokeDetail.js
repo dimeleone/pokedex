@@ -6,19 +6,23 @@ import colorConstants from '../../constants/colorConstants'
 import helper from '../../utils/helper'
 
 const PokeDetail = ({ pokemon }) => {
+    if (!pokemon) {
+        return null
+    }
+
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={{ uri: pokemonService.getImage(pokemon.id) }} />
+            <Image testID='poke-image' style={styles.image} source={{ uri: pokemonService.getImage(pokemon.id) }} />
             <ScrollView style={styles.detailContainer}>
-                <View style={styles.typesContainer}>
+                <View testID='poke-types' style={styles.typesContainer}>
                     {pokemon.types.map((type) => (
                         <Text key={type.type.name} style={{ ...styles.typeLabel, backgroundColor: colorConstants.pokemonTypes[type.type.name] }}>
                             {helper.makeFirstLetterUpperCase(type.type.name)}
                         </Text>
                     ))}
                 </View>
-                <Text style={styles.description}>{pokemon.description}</Text>
-                <View style={styles.statsContainer}>
+                <Text testID='poke-description' style={styles.description}>{pokemon.description}</Text>
+                <View testID='poke-stats' style={styles.statsContainer}>
                     {pokemon.stats.map((pokeStat) => (
                         <View key={pokeStat.stat.name} style={{ marginTop: 8 }}>
                             <Text style={styles.statName}>{helper.mapStatsTitle(pokeStat.stat.name)}</Text>
