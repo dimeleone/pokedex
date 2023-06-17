@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
-import PokeList from '../common/PokeList'
 import pokemonService from '../../services/pokemonService'
+import DEFAULT_POKEMON from '../../assets/json/empty-pokemon.json'
 
-const HomeScreen = ({ navigation }) => {
-    const [pokemons, setPokemons] = useState([])
+const DetailScreen = ({ route }) => {
+    const [pokemon, setPokemon] = useState(DEFAULT_POKEMON)
 
     useEffect(() => {
-        pokemonService.getAll()
+        pokemonService.getById(route.params.pokemon.id)
             .then((data) => {
-                setPokemons(data)
+                setPokemon(data)
             })
             .catch((error) => {
                 console.log(error)
             })
     }, [])
 
-    function handlePress(pokemon) {
-        navigation.navigate('Detail', { pokemon })
-    }
+    console.log(pokemon.id)
 
     return (
         <View style={styles.container}>
-            <PokeList pokemons={pokemons} onPress={handlePress} />
+
         </View>
     )
 }
@@ -33,4 +31,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HomeScreen
+export default DetailScreen

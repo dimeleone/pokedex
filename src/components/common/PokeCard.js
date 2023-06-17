@@ -1,18 +1,23 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native'
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
 import helper from '../../utils/helper'
+import pokemonService from '../../services/pokemonService'
 import colorConstants from '../../constants/colorConstants'
 
-const PokeCard = ({ pokemon }) => {
+const PokeCard = ({ pokemon, onPress }) => {
     const pokemonColor = colorConstants.pokemonTypes[pokemon.types[0].type.name]
 
     return (
-        <View style={{...styles.container, borderColor: pokemonColor }}>
-            <Image style={styles.image} source={{ uri: pokemon.image }} />
+        <TouchableOpacity
+            style={{ ...styles.container, borderColor: pokemonColor }}
+            onPress={onPress}
+            activeOpacity={0.8}
+        >
+            <Image style={styles.image} source={{ uri: pokemonService.getImage(pokemon.id) }} />
             <Text style={{ ...styles.name, backgroundColor: pokemonColor }}>
                 {helper.makeFirstLetterUpperCase(pokemon.name)}
             </Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 
