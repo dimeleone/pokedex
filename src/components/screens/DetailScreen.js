@@ -28,7 +28,7 @@ const DetailScreen = ({ route, navigation }) => {
             .catch(err => {
                 console.log(err)
             })
-    }, [])
+    }, [route.params.pokemon.id])
 
     useEffect(() => {
         navigation.setOptions({
@@ -41,7 +41,7 @@ const DetailScreen = ({ route, navigation }) => {
             },
             headerTintColor: colorConstants.white
         })
-    }, [pokemon])
+    }, [pokemon, navigation])
 
     return (
         <View testID='detail-screen' style={{ ...styles.container, backgroundColor: colorConstants.pokemonTypes[pokemon.types[0].type.name] }}>
