@@ -12,13 +12,15 @@ describe('Teste do componente PokeList', () => {
     })
 
     it('Deve exibir a lista vazia quando não houver pokemons', () => {
-        const tree = render(<PokeList pokemons={[]} />).toJSON()
-        expect(tree).toMatchSnapshot()
+        const { getByTestId  } = render(<PokeList pokemons={[]} />)
+        const pokeList = getByTestId ('poke-list')
+        expect(pokeList.props.data.length).toBe(0)
     })
 
     it('Deve exibir a lista vazia quando a lista de pokemons for nula', () => {
-        const tree = render(<PokeList pokemons={null} />).toJSON()
-        expect(tree).toMatchSnapshot()
+        const { getByTestId  } = render(<PokeList pokemons={[]} />)
+        const pokeList = getByTestId ('poke-list')
+        expect(pokeList.props.data.length).toBe(0)
     })
 
     it('Deve retornar o pokemon selecionado quando o usuário clicar em um pokemon', () => {

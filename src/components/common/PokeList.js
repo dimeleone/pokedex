@@ -6,6 +6,7 @@ const PokeList = ({ pokemons, onPress }) => {
     return (
         <View style={styles.container}>
             <FlatList
+                testID='poke-list'
                 data={pokemons}
                 renderItem={({ item }) => <PokeCard pokemon={item} onPress={() => onPress(item)} />}
                 keyExtractor={item => item.id}
