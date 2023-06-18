@@ -28,6 +28,8 @@
 
 Pokedex - é uma aplicação que lista os pokemons da primeira geração, com a possibilidade de ver os detalhes de cada um deles. Foi desenvolvida com o intuito de praticar os conhecimentos da disciplina C214-Lab.
 
+Você pode acessar o projeto através [desse link](https://snack.expo.dev/@dimeleone/github.com-dimeleone-pokedex).
+
 ---
 
 ## ⚙️ Funcionalidades
